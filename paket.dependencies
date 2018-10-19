@@ -1,0 +1,14 @@
+source https://nuget.org/api/v2
+
+nuget Suave 2.5.1.0
+nuget Elmish
+nuget Elmish.Bridge.Suave
+nuget Elmish.Bridge.Client
+nuget Fable.Elmish.HMR
+nuget FSharp.Core
+nuget Fable.Core
+nuget Fable.Elmish.React
+nuget Fable.Elmish.Browser
+nuget Fable.Elmish.Debugger
+
+clitool dotnet-fable
