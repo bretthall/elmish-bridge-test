@@ -1,0 +1,5 @@
+packages/
+suave-test/bin/
+suave-test/obj/
+.vs/suave-test/v15/.suo
+paket-files/paket.restore.cached

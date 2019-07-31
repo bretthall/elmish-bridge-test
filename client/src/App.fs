@@ -77,16 +77,17 @@ let init _ = ({messages = List.empty; running = false}, Cmd.none)
 
 let update msg model = 
   match msg with
+  | Messages.ClientMsg.Current state  -> ({running = state.running; messages = state.messages |> List.truncate 10}, Cmd.none)
   | Messages.ClientMsg.Data text -> ({model with messages = (text :: model.messages) |> List.truncate 10}, Cmd.none)
-  | Messages.ClientMsg.Start -> Bridge.Send (Messages.ControlMsg.Start); ({model with running = true}, Cmd.none)
-  | Messages.ClientMsg.Stop -> Bridge.Send (Messages.ControlMsg.Stop); ({model with running = false}, Cmd.none)
+  | Messages.ClientMsg.Startted -> ({model with running = true}, Cmd.none)
+  | Messages.ClientMsg.Stopped -> ({model with running = false}, Cmd.none)
 
 let view model dispatch = 
   div [] [
     (if model.running then
-      button [OnClick (fun _ -> dispatch (Messages.ClientMsg.Stop))] [str "Stop"]
+      button [OnClick (fun _ -> Bridge.Send (Messages.ControlMsg.Stop))] [str "Stop"]
      else 
-      button [OnClick (fun _ -> dispatch (Messages.ClientMsg.Start))] [str "Start"] 
+      button [OnClick (fun _ -> Bridge.Send (Messages.ControlMsg.Start))] [str "Start"] 
     )
     ul [] (model.messages |> Seq.rev |> Seq.map (fun msg ->
       li [] [str msg]

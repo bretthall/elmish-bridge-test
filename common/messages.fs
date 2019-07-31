@@ -3,11 +3,16 @@ module Messages
 type ControlMsg = 
     | Start 
     | Stop
-    | Emit
+
+type CurrentState = {
+    running: bool
+    messages: List<string>
+}
 
 type ClientMsg = 
+    | Current of CurrentState
     | Data of string
-    | Start
-    | Stop
+    | Startted
+    | Stopped
 
 let endpoint = "/socket"

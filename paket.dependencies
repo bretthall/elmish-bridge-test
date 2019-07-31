@@ -1,6 +1,6 @@
 source https://nuget.org/api/v2
 
-nuget Suave 2.5.1.0
+nuget Suave
 nuget Elmish
 nuget Elmish.Bridge.Suave
 nuget Elmish.Bridge.Client
